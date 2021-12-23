@@ -1,0 +1,42 @@
+package ${base.pkg}.${base.module}.entity;
+
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+* ${base.comments}
+*
+* @author ${base.author}
+* @date ${base.dateTime}
+*/
+@Data
+@Builder
+@AllArgsConstructor
+@ApiModel(value = "${base.comments}")
+@TableName(value = "${base.tableName}")
+public class ${base.className} extends Model<${base.className}> {
+    private static final long serialVersionUID=1L;
+#foreach ($column in $columns)
+    /**
+    * $column.comments
+    */
+    #if($column.priKey)
+    @TableId
+    #end
+    @ApiModelProperty(value="$column.comments"#if($column.hidden),hidden=$column.hidden#end)
+    private $column.attrType $column.lowerAttrName;
+#end
+
+    public ${base.className} () {
+
+    }
+}

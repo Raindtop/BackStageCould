@@ -21,14 +21,17 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.raindrop.mapper.PersonMapper">
+<mapper namespace="org.raindrop.codegen.mapper.CodeGenMapper">
 
-    <insert id="insertBatch">
-        INSERT INTO `raindrop`.`person`
-        (`name`, `age`, `add_loca`)
-        VALUES
-        <foreach collection="list" item="obj" separator=",">
-            (#{obj.name},#{obj.age},#{obj.addLoca})
-        </foreach>
-    </insert>
+    <select id="queryColumn" resultType="org.raindrop.codegen.entity.TableColumn">
+        select
+            table_schema,table_name,column_name, data_type, column_key, column_type, column_comment from information_schema.columns
+        where
+            table_schema = '${dataBaseName}'
+        and table_name = '${tableName}'
+    </select>
+
+    <select id="queryTable" resultType="org.raindrop.codegen.entity.TableInfo">
+        select table_name, table_comment, create_time from information_schema.tables where table_schema = '${dataBaseName}' and table_name = '${tableName}'
+    </select>
 </mapper>
