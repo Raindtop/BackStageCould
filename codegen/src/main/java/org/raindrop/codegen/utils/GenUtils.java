@@ -106,6 +106,6 @@ public class GenUtils {
 
     public void delFile(){
         // 删除原文件
-        FileUtil.del(Template.getRootPath());
+        FileUtil.del(System.getProperty("user.dir") + "/src");
     }
 }

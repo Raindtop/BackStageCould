@@ -14,31 +14,21 @@
  * this software without specific prior written permission.
  * Author: daoism
  */
+package org.raindrop.stock.service.impl;
 
-package ${base.pkg}.${base.module}.controller;
-
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import ${base.pkg}.${base.module}.entity.${base.className};
-import ${base.pkg}.${base.module}.service.${base.className}Service;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.raindrop.stock.entity.StockInfo;
+import org.raindrop.stock.mapper.StockInfoMapper;
+import org.raindrop.stock.service.StockInfoService;
+import org.springframework.stereotype.Service;
 
 /**
- * ${base.comments}
+ * 股票信息
  *
- * @author ${base.author}
+ * @author raindrop
  * @date ${base.datetime}
  */
-@RestController
-@AllArgsConstructor
-@RequestMapping("/${base.pathName}" )
-@Api(value = "${base.pathName}", tags = "${base.comments}管理")
-public class ${base.className}Controller {
-
-    private final  ${base.className}Service ${base.className}Service;
+@Service
+public class StockInfoServiceImpl extends ServiceImpl<StockInfoMapper, StockInfo> implements StockInfoService {
 
 }

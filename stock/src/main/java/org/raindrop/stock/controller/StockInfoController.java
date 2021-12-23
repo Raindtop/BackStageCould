@@ -15,12 +15,12 @@
  * Author: daoism
  */
 
-package ${base.pkg}.${base.module}.controller;
+package org.raindrop.stock.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import ${base.pkg}.${base.module}.entity.${base.className};
-import ${base.pkg}.${base.module}.service.${base.className}Service;
+import org.raindrop.stock.entity.StockInfo;
+import org.raindrop.stock.service.StockInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -28,17 +28,17 @@ import org.springframework.web.bind.annotation.*;
 
 
 /**
- * ${base.comments}
+ * 股票信息
  *
- * @author ${base.author}
+ * @author raindrop
  * @date ${base.datetime}
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/${base.pathName}" )
-@Api(value = "${base.pathName}", tags = "${base.comments}管理")
-public class ${base.className}Controller {
+@RequestMapping("/stock_info" )
+@Api(value = "stock_info", tags = "股票信息管理")
+public class StockInfoController {
 
-    private final  ${base.className}Service ${base.className}Service;
+    private final  StockInfoService StockInfoService;
 
 }

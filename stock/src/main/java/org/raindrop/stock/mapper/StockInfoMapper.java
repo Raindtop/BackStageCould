@@ -15,30 +15,19 @@
  * Author: daoism
  */
 
-package ${base.pkg}.${base.module}.controller;
+package org.raindrop.stock.mapper;
 
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import ${base.pkg}.${base.module}.entity.${base.className};
-import ${base.pkg}.${base.module}.service.${base.className}Service;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.raindrop.stock.entity.StockInfo;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
- * ${base.comments}
+ * 股票信息
  *
- * @author ${base.author}
- * @date ${base.datetime}
+ * @author raindrop
+ * @date 2021-12-23 14:18:30
  */
-@RestController
-@AllArgsConstructor
-@RequestMapping("/${base.pathName}" )
-@Api(value = "${base.pathName}", tags = "${base.comments}管理")
-public class ${base.className}Controller {
-
-    private final  ${base.className}Service ${base.className}Service;
+@Mapper
+public interface StockInfoMapper extends BaseMapper<StockInfo> {
 
 }

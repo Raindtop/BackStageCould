@@ -15,12 +15,12 @@
  * Author: daoism
  */
 
-package ${base.pkg}.${base.module}.controller;
+package org.raindrop.stock.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import ${base.pkg}.${base.module}.entity.${base.className};
-import ${base.pkg}.${base.module}.service.${base.className}Service;
+import org.raindrop.stock.entity.StockDateTop;
+import org.raindrop.stock.service.StockDateTopService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -28,17 +28,17 @@ import org.springframework.web.bind.annotation.*;
 
 
 /**
- * ${base.comments}
+ * 连续涨停股票
  *
- * @author ${base.author}
+ * @author raindrop
  * @date ${base.datetime}
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/${base.pathName}" )
-@Api(value = "${base.pathName}", tags = "${base.comments}管理")
-public class ${base.className}Controller {
+@RequestMapping("/stock_date_top" )
+@Api(value = "stock_date_top", tags = "连续涨停股票管理")
+public class StockDateTopController {
 
-    private final  ${base.className}Service ${base.className}Service;
+    private final  StockDateTopService StockDateTopService;
 
 }
