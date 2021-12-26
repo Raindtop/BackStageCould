@@ -17,6 +17,7 @@ public class BaseInfoDto {
     private String comments;
     private String tableName;
     private String className;
+    private String classNameValue;
     private String pathName;
 
     public String fullPkg(String finalPkg){

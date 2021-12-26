@@ -39,6 +39,6 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "stock_date_top", tags = "连续涨停股票管理")
 public class StockDateTopController {
 
-    private final  StockDateTopService StockDateTopService;
+    private final  StockDateTopService stockDateTopService;
 
 }

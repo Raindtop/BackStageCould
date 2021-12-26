@@ -21,14 +21,15 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.raindrop.mapper.PersonMapper">
+<mapper namespace="org.raindrop.stock.mapper.StockInfoMapper">
 
-    <insert id="insertBatch">
-        INSERT INTO `raindrop`.`person`
-        (`name`, `age`, `add_loca`)
-        VALUES
-        <foreach collection="list" item="obj" separator=",">
-            (#{obj.name},#{obj.age},#{obj.addLoca})
-        </foreach>
-    </insert>
+    <resultMap id="StockInfoMap" type="org.raindrop.stock.entity.StockInfo">
+        <id property="id" column="id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deleteFlag" column="delete_flag"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="namePy" column="name_py"/>
+    </resultMap>
 </mapper>

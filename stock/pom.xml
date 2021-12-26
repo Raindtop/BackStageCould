@@ -14,8 +14,21 @@
     <name>stock</name>
     <description>Stock Project</description>
     <packaging>jar</packaging>
+    <properties>
+        <tinypinyin.version>2.0.3</tinypinyin.version>
+    </properties>
 
-    <dependencies>
+    <dependencies><!-- https://mvnrepository.com/artifact/com.github.promeg/tinypinyin -->
+        <dependency>
+            <groupId>com.github.promeg</groupId>
+            <artifactId>tinypinyin</artifactId>
+            <version>${tinypinyin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.github.xiaoymin</groupId>

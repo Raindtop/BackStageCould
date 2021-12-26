@@ -39,6 +39,14 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "stock_info", tags = "股票信息管理")
 public class StockInfoController {
 
-    private final  StockInfoService StockInfoService;
+    private final StockInfoService stockInfoService;
+
+    /**
+     * 同步数据
+     */
+    @GetMapping("/sync")
+    public void sync(){
+        stockInfoService.sync();
+    }
 
 }

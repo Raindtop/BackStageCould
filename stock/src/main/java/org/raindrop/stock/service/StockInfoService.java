@@ -27,5 +27,8 @@ import org.raindrop.stock.entity.StockInfo;
  * @date ${base.datetime}
  */
 public interface StockInfoService extends IService<StockInfo> {
-
+    /**
+     * 同步数据
+     */
+    void sync();
 }

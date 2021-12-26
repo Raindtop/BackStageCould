@@ -60,7 +60,7 @@ public class StringUtil {
      * @param str
      * @return
      */
-    private static String lowerFirstCase(String str) {
+    public static String lowerFirstCase(String str) {
         char[] chars = str.toCharArray();
         chars[0] += 32;
         return String.valueOf(chars);
@@ -71,7 +71,7 @@ public class StringUtil {
      * @param str
      * @return
      */
-    private static String upperFirstCase(String str) {
+    public static String upperFirstCase(String str) {
         char[] chars = str.toCharArray();
         chars[0] -= 32;
         return String.valueOf(chars);

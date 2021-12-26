@@ -56,6 +56,7 @@ public class GenUtils {
                     .pkg(tableDto.getPkg())
                     .module(tableDto.getModule())
                     .className(StringUtil.tableToClassName(tableInfo.getTableName()))
+                    .classNameValue(StringUtil.lowerFirstCase(tableInfo.getTableName()))
                     .pathName(tableName)
                     .comments(tableInfo.getTableComment())
                     .tableName(tableInfo.getTableName())

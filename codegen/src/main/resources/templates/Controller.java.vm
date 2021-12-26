@@ -39,6 +39,6 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "${base.pathName}", tags = "${base.comments}管理")
 public class ${base.className}Controller {
 
-    private final  ${base.className}Service ${base.className}Service;
+    private final ${base.className}Service ${base.classNameValue}Service;
 
 }
