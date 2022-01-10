@@ -18,7 +18,15 @@
         <tinypinyin.version>2.0.3</tinypinyin.version>
     </properties>
 
-    <dependencies><!-- https://mvnrepository.com/artifact/com.github.promeg/tinypinyin -->
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.14.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.promeg/tinypinyin -->
         <dependency>
             <groupId>com.github.promeg</groupId>
             <artifactId>tinypinyin</artifactId>

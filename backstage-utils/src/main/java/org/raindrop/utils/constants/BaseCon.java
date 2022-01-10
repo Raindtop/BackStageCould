@@ -1,7 +1,5 @@
 package org.raindrop.utils.constants;
 
-import java.math.BigDecimal;
-
 /**
  * @author tsf
  * @date 2021/1/21 1:56 下午
@@ -30,4 +28,6 @@ public class BaseCon {
      */
     public final static int ENABLED = 1;
 
+
+    public static final String SPIDER_ENCODE_STR = "raindrop_back_stage";
 }
