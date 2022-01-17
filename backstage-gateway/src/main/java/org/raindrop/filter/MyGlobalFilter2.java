@@ -1,8 +1,6 @@
 package org.raindrop.filter;
 
 import cn.hutool.core.map.MapUtil;
-import cn.hutool.crypto.digest.MD5;
-import com.alibaba.nacos.common.utils.MD5Utils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +13,8 @@ import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -34,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
-public class MyGlobalFilter implements GlobalFilter, Ordered {
+public class MyGlobalFilter2 implements GlobalFilter, Ordered {
     @Resource
     private SpiderUrl spiderUrl;
     @Resource
@@ -45,8 +40,6 @@ public class MyGlobalFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         String url = request.getPath().value();
-//        // 对Flux的缓存区进行实验，在这里延迟1秒，使1秒的数据缓存至gateway的缓存中
-//        Thread.sleep(1000l);
 
         // 爬虫检测
         if (!spiderUrl.isIgnorePath(url)){
@@ -81,9 +74,9 @@ public class MyGlobalFilter implements GlobalFilter, Ordered {
                 String value = getValue(BaseCon.SPIDER_ENCODE_STR, appId, nonce, timestamp, url, paramsStr, body.toString());
                 String encodeStr = SHA256Encode(value);
                 String sign = request.getHeaders().getFirst("sign");
-                if (!sign.equals(encodeStr)){
+                if (sign == null || !sign.equals(encodeStr)){
                     log.info("Error Sign not like encodeStr");
-                    log.info("nonce={}, timestamp={}, path={}, param={}, body={}, value={}, encodeStr={}", nonce, timestamp, url, paramsStr, body, value, encodeStr);
+                    log.info("nonce={}, timestamp={}, path={}, param={}, body={}, value={}, encodeStr={}, sign={}", nonce, timestamp, url, paramsStr, body, value, encodeStr, sign);
                     return exchange.getResponse().setComplete();
                 }else{
                     log.info("success");
@@ -95,7 +88,7 @@ public class MyGlobalFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return -1000;
+        return -500;
     }
 
 

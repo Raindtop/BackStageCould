@@ -12,10 +12,11 @@ public class DemoController {
 
     @SneakyThrows
     @PostMapping("test/{id}")
-    public void test(@PathVariable Long id, @RequestBody Object object){
+    public String test(@PathVariable Long id, @RequestBody Object object){
         log.info("test");
         log.info("Obj={}", JSONObject.toJSONString(object));
         // 对Flux的缓存区进行实验，在这里延迟1秒，使1秒的数据缓存至gateway的缓存中
         Thread.sleep(1000l);
+        return "success";
     }
 }

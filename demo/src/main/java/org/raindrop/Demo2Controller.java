@@ -83,7 +83,7 @@ public class Demo2Controller {
         getRequest.header("sign", encodeStr);
 
         log.info("nonce={}, timestamp={}, path={}, param={}, body={}, value={}, encodeStr={}", nonce, timestamp, path, paramStr, body.toJSONString(), value, encodeStr);
-        getRequest.executeAsync();
+        System.out.println(getRequest.execute().body());
     }
 
     public static String getValue(String key, String appId, String nonce, String timestamp, String path,
@@ -118,7 +118,7 @@ class RunThread implements Runnable{
 
     @Override
     public void run() {
-        for (int i=0; i<10000; i++){
+        for (int i=0; i<1; i++){
             log.info("Times={}", i);
             Demo2Controller.execue();
         }
