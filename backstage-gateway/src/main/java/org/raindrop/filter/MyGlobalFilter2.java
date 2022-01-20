@@ -1,6 +1,7 @@
 package org.raindrop.filter;
 
 import cn.hutool.core.map.MapUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,10 @@ import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
@@ -58,8 +62,9 @@ public class MyGlobalFilter2 implements GlobalFilter, Ordered {
                 Map<String, List<String>> getParams = request.getQueryParams();
                 Map<String, String> resultParams = new HashMap<>();
                 for (Map.Entry entry: getParams.entrySet()){
-                    List<String> value = (List<String>)entry.getValue();
-                    resultParams.put((String)entry.getKey(), org.apache.commons.lang3.StringUtils.join(value, ","));
+                    String value = ((List<String>)entry.getValue()).get(0);
+                    log.info("value={}", value);
+                    resultParams.put((String)entry.getKey(), value);
                 }
                 String paramsStr = MapUtil.sortJoin(resultParams, "&", "=", true, null);
                 Flux<DataBuffer> dataBufferFlux = request.getBody();
@@ -77,7 +82,7 @@ public class MyGlobalFilter2 implements GlobalFilter, Ordered {
                 if (sign == null || !sign.equals(encodeStr)){
                     log.info("Error Sign not like encodeStr");
                     log.info("nonce={}, timestamp={}, path={}, param={}, body={}, value={}, encodeStr={}, sign={}", nonce, timestamp, url, paramsStr, body, value, encodeStr, sign);
-                    return exchange.getResponse().setComplete();
+                    return fastFinish(exchange);
                 }else{
                     log.info("success");
                 }
@@ -91,6 +96,19 @@ public class MyGlobalFilter2 implements GlobalFilter, Ordered {
         return -500;
     }
 
+    private Mono<Void> fastFinish(ServerWebExchange exchange){
+        ServerHttpResponse response = exchange.getResponse();
+        response.setStatusCode(HttpStatus.OK);
+        response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+        Map<String, Object> data = new HashMap<String, Object>(){{
+            put("code", 0);
+            put("msg", null);
+            put("data", null);
+        }};
+        byte[] bytes = data.toString().getBytes(StandardCharsets.UTF_8);
+        DataBuffer buffer = response.bufferFactory().wrap(bytes);
+        return response.writeWith(Flux.just(buffer));
+    }
 
 
     @SneakyThrows

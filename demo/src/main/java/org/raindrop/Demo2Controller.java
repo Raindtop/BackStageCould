@@ -30,17 +30,22 @@ public class Demo2Controller {
         for(int i=0; i<20; i++){
             new Thread(new RunThread()).start();
         }
+        execue();
     }
 
     public static void execue(){
         // Path数据
-        String path = "/filter/test/123";
+        String path = "/filter/test/1231";
         // param数据
         Map<String, Object> params = new HashMap<String, Object>(8);
-        params.put(getName(), Arrays.asList(getName()));
-        params.put(getName(), Arrays.asList(getName()));
-        params.put(getName(), Arrays.asList(getName()));
-        params.put(getName(), Arrays.asList(getName()));
+//        params.put(getName(), Arrays.asList(getName()));
+//        params.put(getName(), Arrays.asList(getName()));
+//        params.put(getName(), Arrays.asList(getName()));
+//        params.put(getName(), Arrays.asList(getName()));
+        params.put(getName(), getName());
+        params.put(getName(), getName());
+        params.put(getName(), getName());
+        params.put(getName(), getName());
         String paramStr = MapUtil.sortJoin(params, "&", "=", true, null);
         HttpRequest getRequest = HttpUtil.createPost("http://127.0.0.1:8080" + path + "?" + paramStr);
 
@@ -78,11 +83,11 @@ public class Demo2Controller {
         getRequest.header("nonce", nonce);
         getRequest.header("timestamp", timestamp);
 
-        String value = getValue(BaseCon.SPIDER_ENCODE_STR, "mkh-shop", nonce, timestamp, path, paramStr, body.toJSONString());
+        String value = getValue(BaseCon.SPIDER_ENCODE_STR, "mkh-shop123", nonce, timestamp, path, paramStr, null);
         String encodeStr = SHA256Encode(value);
         getRequest.header("sign", encodeStr);
 
-        log.info("nonce={}, timestamp={}, path={}, param={}, body={}, value={}, encodeStr={}", nonce, timestamp, path, paramStr, body.toJSONString(), value, encodeStr);
+        log.info("nonce={}, timestamp={}, path={}, param={}, body={}, value={}, encodeStr={}", nonce, timestamp, path, paramStr, null, value, encodeStr);
         System.out.println(getRequest.execute().body());
     }
 
@@ -118,7 +123,7 @@ class RunThread implements Runnable{
 
     @Override
     public void run() {
-        for (int i=0; i<1; i++){
+        for (int i=0; i<10000; i++){
             log.info("Times={}", i);
             Demo2Controller.execue();
         }

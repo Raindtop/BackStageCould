@@ -31,6 +31,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -73,6 +74,14 @@ public class DaoismRequestGlobalFilter implements GlobalFilter, Ordered {
 		return DataBufferUtils.join(newRequest.getBody()).flatMap(dataBuffer -> {
 			DataBufferUtils.retain(dataBuffer);
 			Flux<DataBuffer> cachedFlux = Flux.defer(() -> Flux.just(dataBuffer.slice(0, dataBuffer.readableByteCount())));
+			StringBuilder body = new StringBuilder();
+			cachedFlux.subscribe(dataBuffer1 -> {
+				byte[] bytes = new byte[dataBuffer1.readableByteCount()];
+				dataBuffer1.read(bytes);
+				DataBufferUtils.release(dataBuffer1);
+				body.append(new String(bytes, StandardCharsets.UTF_8));
+			});
+
 			ServerHttpRequest mutatedRequest = new ServerHttpRequestDecorator(newRequest){
 				@Override
 				public Flux<DataBuffer> getBody(){
