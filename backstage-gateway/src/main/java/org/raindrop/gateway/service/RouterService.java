@@ -1,6 +1,6 @@
-package org.raindrop.service;
+package org.raindrop.gateway.service;
 
-import org.raindrop.config.RedisRouteDefinitionRepository;
+import org.raindrop.gateway.config.RedisRouteDefinitionRepository;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.context.ApplicationEventPublisher;

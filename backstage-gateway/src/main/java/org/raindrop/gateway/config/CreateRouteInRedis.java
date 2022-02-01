@@ -1,10 +1,9 @@
-package org.raindrop.config;
+package org.raindrop.gateway.config;
 
 import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.gateway.filter.FilterDefinition;
+import org.raindrop.gateway.con.GatewayCon;
 import org.springframework.cloud.gateway.handler.predicate.PredicateDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -17,7 +16,6 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
@@ -46,6 +44,7 @@ public class CreateRouteInRedis {
 
         String json = JSON.toJSONString(Arrays.asList(definition));
         log.info("Create RouteDefinition. RouteDefinitionList={}", json);
-        redisTemplate.opsForValue().set("GATEWAY", json, 36000, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(GatewayCon.REDIS_GATEWAY_KEY, json);
     }
+
 }

@@ -50,7 +50,6 @@
 
     <dependencyManagement>
         <dependencies>
-
             <!-- EasyExcel-->
             <dependency>
                 <groupId>com.alibaba</groupId>

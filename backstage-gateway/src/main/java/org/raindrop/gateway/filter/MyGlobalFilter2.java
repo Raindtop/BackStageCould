@@ -1,12 +1,11 @@
-package org.raindrop.filter;
+package org.raindrop.gateway.filter;
 
 import cn.hutool.core.map.MapUtil;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Hex;
-import org.raindrop.bean.SpiderUrl;
+import org.raindrop.gateway.bean.SpiderUrl;
 import org.raindrop.utils.constants.BaseCon;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;

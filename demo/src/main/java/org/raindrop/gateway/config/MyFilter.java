@@ -1,4 +1,4 @@
-package org.raindrop.config;
+package org.raindrop.gateway.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
