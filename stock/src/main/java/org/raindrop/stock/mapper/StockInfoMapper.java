@@ -15,10 +15,10 @@
  * Author: daoism
  */
 
-package org.raindrop.stock.mapper;
+package org.raindrop.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.raindrop.stock.entity.StockInfo;
+import org.raindrop.entity.StockInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

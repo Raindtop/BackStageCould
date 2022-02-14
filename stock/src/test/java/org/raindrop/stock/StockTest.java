@@ -1,7 +1,7 @@
-package org.raindrop.stock;
+package org.raindrop;
 
 import org.junit.Test;
-import org.raindrop.stock.service.StockInfoService;
+import org.raindrop.service.StockInfoService;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;

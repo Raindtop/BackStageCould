@@ -1,4 +1,4 @@
-package org.raindrop.stock.entity;
+package org.raindrop.entity;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;
@@ -26,7 +26,7 @@ import java.util.*;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.raindrop.stock.constants.MarketEnum;
+import org.raindrop.constants.MarketEnum;
 
 
 /**
@@ -85,7 +85,7 @@ public class StockInfo extends Model<StockInfo> {
     private Integer status;
     /**
      * 市场
-     * {@link org.raindrop.stock.constants.MarketEnum}
+     * {@link org.raindrop.constants.MarketEnum}
      */
     @ApiModelProperty(value = "市场")
     private String market;

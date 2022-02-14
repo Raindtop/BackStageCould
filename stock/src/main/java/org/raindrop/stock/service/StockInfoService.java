@@ -15,10 +15,10 @@
  * Author: daoism
  */
 
-package org.raindrop.stock.service;
+package org.raindrop.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.raindrop.stock.entity.StockInfo;
+import org.raindrop.entity.StockInfo;
 
 /**
  * 股票信息

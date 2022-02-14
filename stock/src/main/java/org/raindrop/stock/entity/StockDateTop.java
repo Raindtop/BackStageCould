@@ -1,4 +1,4 @@
-package org.raindrop.stock.entity;
+package org.raindrop.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;

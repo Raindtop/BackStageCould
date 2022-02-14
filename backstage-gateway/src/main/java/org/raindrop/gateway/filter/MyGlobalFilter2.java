@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Hex;
-import org.raindrop.gateway.bean.SpiderUrl;
-import org.raindrop.utils.constants.BaseCon;
+import org.raindrop.gateway.bean.FilterConfig;
+import org.raindrop.gateway.con.GatewayCon;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class MyGlobalFilter2 implements GlobalFilter, Ordered {
     @Resource
-    private SpiderUrl spiderUrl;
+    private FilterConfig filterConfig;
     @Resource
     private RedisTemplate redisTemplate;
 
@@ -45,24 +45,23 @@ public class MyGlobalFilter2 implements GlobalFilter, Ordered {
         String url = request.getPath().value();
 
         // 爬虫检测
-        if (!spiderUrl.isIgnorePath(url)){
+        if (!filterConfig.isIgnorePath(url)){
             // 需要爬虫的地址
-            if (spiderUrl.isNoticePath(url)){
+            if (filterConfig.isNoticePath(url)){
                 String appId = request.getHeaders().getFirst("appid");
                 String nonce = request.getHeaders().getFirst("nonce");
                 String timestamp = request.getHeaders().getFirst("timestamp");
 
-                if (redisTemplate.hasKey("NONCE_KEY_" + nonce)){
+                if (redisTemplate.hasKey(GatewayCon.NONCE_KEY + nonce)){
                     return exchange.getResponse().setComplete();
                 }else{
-                    redisTemplate.opsForValue().set("NONCE_KEY_" + nonce, 1, 1, TimeUnit.MINUTES);
+                    redisTemplate.opsForValue().set(GatewayCon.NONCE_KEY + nonce, 1, 1, TimeUnit.MINUTES);
                 }
 
                 Map<String, List<String>> getParams = request.getQueryParams();
                 Map<String, String> resultParams = new HashMap<>();
                 for (Map.Entry entry: getParams.entrySet()){
                     String value = ((List<String>)entry.getValue()).get(0);
-                    log.info("value={}", value);
                     resultParams.put((String)entry.getKey(), value);
                 }
                 String paramsStr = MapUtil.sortJoin(resultParams, "&", "=", true, null);
@@ -75,7 +74,7 @@ public class MyGlobalFilter2 implements GlobalFilter, Ordered {
                     body.append(new String(bytes, StandardCharsets.UTF_8));
                 });
 
-                String value = getValue(BaseCon.SPIDER_ENCODE_STR, appId, nonce, timestamp, url, paramsStr, body.toString());
+                String value = getValue(GatewayCon.SPIDER_ENCODE_STR, appId, nonce, timestamp, url, paramsStr, body.toString());
                 String encodeStr = SHA256Encode(value);
                 String sign = request.getHeaders().getFirst("sign");
                 if (sign == null || !sign.equals(encodeStr)){
@@ -83,7 +82,7 @@ public class MyGlobalFilter2 implements GlobalFilter, Ordered {
                     log.info("nonce={}, timestamp={}, path={}, param={}, body={}, value={}, encodeStr={}, sign={}", nonce, timestamp, url, paramsStr, body, value, encodeStr, sign);
                     return fastFinish(exchange);
                 }else{
-                    log.info("success");
+
                 }
             }
         }

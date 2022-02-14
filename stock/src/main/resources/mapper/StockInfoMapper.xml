@@ -21,9 +21,9 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.raindrop.stock.mapper.StockInfoMapper">
+<mapper namespace="org.raindrop.mapper.StockInfoMapper">
 
-    <resultMap id="StockInfoMap" type="org.raindrop.stock.entity.StockInfo">
+    <resultMap id="StockInfoMap" type="org.raindrop.entity.StockInfo">
         <id property="id" column="id"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>

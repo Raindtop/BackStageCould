@@ -15,12 +15,12 @@
  * Author: daoism
  */
 
-package org.raindrop.stock.controller;
+package org.raindrop.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.raindrop.stock.entity.StockInfo;
-import org.raindrop.stock.service.StockInfoService;
+import org.raindrop.entity.StockInfo;
+import org.raindrop.service.StockInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

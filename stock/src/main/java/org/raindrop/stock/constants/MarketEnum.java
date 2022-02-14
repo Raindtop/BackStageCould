@@ -1,4 +1,4 @@
-package org.raindrop.stock.constants;
+package org.raindrop.constants;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
