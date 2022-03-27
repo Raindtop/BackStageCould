@@ -23,7 +23,7 @@
 
 <mapper namespace="org.raindrop.mapper.StockInfoMapper">
 
-    <resultMap id="StockInfoMap" type="org.raindrop.entity.StockInfo">
+    <resultMap id="StockInfoMap" type="org.raindrop.stock.entity.StockInfo">
         <id property="id" column="id"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>

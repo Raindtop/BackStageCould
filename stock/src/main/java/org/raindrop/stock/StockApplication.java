@@ -1,4 +1,4 @@
-package org.raindrop;
+package org.raindrop.stock;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

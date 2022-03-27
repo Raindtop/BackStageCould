@@ -15,28 +15,16 @@
  * Author: daoism
  */
 
-package org.raindrop.controller;
+package org.raindrop.stock.controller;
 
-import cn.hutool.http.HtmlUtil;
-import cn.hutool.http.HttpRequest;
-import cn.hutool.http.HttpUtil;
-import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
+import lombok.AllArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.raindrop.entity.StockDateTop;
-import org.raindrop.service.StockDateTopService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
-import org.raindrop.utils.date.DateUtil;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.raindrop.stock.service.StockDateTopService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 /**

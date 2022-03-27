@@ -14,15 +14,15 @@
  * this software without specific prior written permission.
  * Author: daoism
  */
-package org.raindrop.service.impl;
+package org.raindrop.stock.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.raindrop.constants.ShMarketTabEnum;
-import org.raindrop.entity.StockInfo;
-import org.raindrop.mapper.StockInfoMapper;
-import org.raindrop.service.StockInfoService;
-import org.raindrop.utils.StockInfoUtils;
+import org.raindrop.stock.constants.ShMarketTabEnum;
+import org.raindrop.stock.entity.StockInfo;
+import org.raindrop.stock.mapper.StockInfoMapper;
+import org.raindrop.stock.service.StockInfoService;
+import org.raindrop.stock.utils.StockInfoUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

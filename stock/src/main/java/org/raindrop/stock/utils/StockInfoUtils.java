@@ -1,4 +1,4 @@
-package org.raindrop.utils;
+package org.raindrop.stock.utils;
 
 import cn.hutool.extra.pinyin.PinyinUtil;
 import cn.hutool.http.HttpRequest;
@@ -8,9 +8,9 @@ import cn.hutool.poi.excel.ExcelUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.raindrop.constants.MarketEnum;
-import org.raindrop.constants.ShMarketTabEnum;
-import org.raindrop.entity.StockInfo;
+import org.raindrop.stock.constants.MarketEnum;
+import org.raindrop.stock.constants.ShMarketTabEnum;
+import org.raindrop.stock.entity.StockInfo;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
@@ -150,5 +150,11 @@ public class StockInfoUtils {
         }
 
         return stockInfos;
+    }
+
+    public static void main(String[] args) {
+        for (int i=101; i<200; i++){
+            System.out.println(i + ".");
+        }
     }
 }

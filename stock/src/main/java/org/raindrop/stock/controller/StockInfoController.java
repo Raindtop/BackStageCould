@@ -15,16 +15,14 @@
  * Author: daoism
  */
 
-package org.raindrop.controller;
+package org.raindrop.stock.controller;
 
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.raindrop.entity.StockInfo;
-import org.raindrop.service.StockInfoService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.raindrop.stock.service.StockInfoService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 /**

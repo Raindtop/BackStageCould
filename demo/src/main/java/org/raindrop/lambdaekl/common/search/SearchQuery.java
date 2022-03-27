@@ -5,5 +5,5 @@ import org.raindrop.lambdaekl.common.query.Query;
 
 @Data
 public class SearchQuery {
-    private List<Query>
+
 }
