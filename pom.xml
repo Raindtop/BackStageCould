@@ -7,7 +7,7 @@
     <groupId>org.raindrop</groupId>
     <artifactId>Backstage-cloud</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>backstage-common</module>
         <module>backstage-core</module>
@@ -54,6 +54,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.raindrop</groupId>
+                <artifactId>backstage-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- EasyExcel-->
             <dependency>
                 <groupId>com.alibaba</groupId>

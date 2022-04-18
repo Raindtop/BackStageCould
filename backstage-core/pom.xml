@@ -5,7 +5,7 @@
     <parent>
         <artifactId>Backstage-cloud</artifactId>
         <groupId>org.raindrop</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,9 +15,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.raindrop</groupId>
+            <artifactId>backstage-common</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
