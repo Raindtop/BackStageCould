@@ -15,7 +15,11 @@ import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Slf4j
 @Component
@@ -153,8 +157,40 @@ public class StockInfoUtils {
     }
 
     public static void main(String[] args) {
-        for (int i=101; i<200; i++){
-            System.out.println(i + ".");
+//        int start = 1;
+//        for (int i=start; i<start + 50; i++){
+//            System.out.println(i + ". A:" + "\t\t" + "R:" + "\t\t" + "I:F" + "\t\t");
+//            if (i % 5 == 0){
+//                System.out.println();
+//            }
+//        }
+
+
+        // 实际商品价格
+//        BigDecimal realPrice = BigDecimal.ZERO;
+//        BigDecimal readyRealNums = new BigDecimal("0.62").divide(new BigDecimal("0.85"), 2, RoundingMode.HALF_UP);
+//        BigDecimal realAmt = BigDecimal.ZERO;
+//        BigDecimal readyGDiscountAmt = BigDecimal.ZERO;
+//        // 计算优惠后的价格
+//        realPrice = new BigDecimal("5.42").divide(new BigDecimal(1), 2, RoundingMode.HALF_UP);
+//        realAmt = realPrice.multiply(readyRealNums).setScale(2, RoundingMode.HALF_UP);
+
+        ExecutorService cachedThreadPool = Executors.newSingleThreadExecutor();
+        for (int i = 0; i < 10; i++) {
+            final int index = i;
+            cachedThreadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        log.info("1111");
+                        System.out.println(index);
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
     }
 }
