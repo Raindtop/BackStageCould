@@ -13,7 +13,6 @@
         <module>backstage-core</module>
         <module>backstage-auth</module>
         <module>backstage-gateway</module>
-        <module>stock</module>
         <module>codegen</module>
         <module>demo</module>
     </modules>
