@@ -39,20 +39,4 @@ public class RedisConfig {
         template.setHashValueSerializer(serializer);
         return template;
     }
-
-    /**
-     * @Description: TODO 生成SessionRedisTemplate，session内部是一个复杂类型，所有是用jdk的序列化
-     * @author raindrop
-     * @date 2021/12/15
-     * @param redisConnectionFactory
-     * @return
-     */
-    @Bean
-    @ConditionalOnMissingBean(name = "sessionRedisTemplate")
-    public RedisTemplate sessionRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        log.info("<-------------Init SessionRedisTemplate----------->");
-        RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
-        template.setConnectionFactory(redisConnectionFactory);
-        return template;
-    }
 }
