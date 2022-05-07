@@ -25,7 +25,7 @@
 
   <resultMap id="${base.className}Map" type="${base.pkg}.${base.module}.entity.${base.className}">
     #foreach($column in $columns)
-      #if($$column.priKey)
+      #if($column.priKey)
         <id property="${column.lowerAttrName}" column="${column.columnName}"/>
       #else
         <result property="${column.lowerAttrName}" column="${column.columnName}"/>

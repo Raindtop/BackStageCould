@@ -1,17 +1,20 @@
 spring:
   application:
-    name: code-gen
+    name: @artifactId@
   profiles:
-    active: dev
+    active: @profiles.active@
   cloud:
     nacos:
+      discovery:
+        server-addr: ${NACOS_HOST:raindrop.com}:${NACOS_PORT:8848}
+        namespace: ${DIS_NAMESPACE:}
       config:
-        # 配置文件的格式
         file-extension: yaml
-        # 配置中心的地址
-        server-addr: raindrop.com:8848
-        # 配置文件prefix
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
         prefix: ${spring.application.name}
-        shared-configs[0]:
-          data-id: application.yaml
-          refresh: true
+        namespace: ${CONFIG_NAMESPACE:}
+        group: ${GROUP:DEFAULT_GROUP}
+        shared-configs:
+          - data-id: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            refresh: true
+            group: ${GROUP:DEFAULT_GROUP}

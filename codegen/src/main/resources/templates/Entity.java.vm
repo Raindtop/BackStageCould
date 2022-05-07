@@ -26,14 +26,12 @@ public class ${base.className} extends Model<${base.className}> {
     private static final long serialVersionUID=1L;
 #foreach ($column in $columns)
     /**
-    * $column.comments
+    *  $column.comments
     */
     #if($column.priKey)
-    @TableId
-    #else
-    @TableField(value = "`$column.columnName`")
+@TableId
     #end
-    private $column.attrType $column.lowerAttrName;
+private $column.attrType $column.lowerAttrName;
 #end
 
     public ${base.className} () {
