@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: @artifactId@
+  profiles:
+    active: @profiles.active@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_HOST:raindrop.com}:${NACOS_PORT:8848}
+        namespace: ${DIS_NAMESPACE:}
+      config:
+        file-extension: yaml
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        prefix: ${spring.application.name}
+        namespace: ${CONFIG_NAMESPACE:}
+        group: ${GROUP:DEFAULT_GROUP}
+        shared-configs:
+          - data-id: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            refresh: true
+            group: ${GROUP:DEFAULT_GROUP}

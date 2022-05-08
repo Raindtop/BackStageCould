@@ -7,7 +7,7 @@
     <groupId>org.raindrop</groupId>
     <artifactId>Backstage-cloud</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>backstage-common</module>
         <module>backstage-core</module>
@@ -15,6 +15,7 @@
         <module>backstage-gateway</module>
         <module>codegen</module>
         <module>demo</module>
+        <module>backstage-upms</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
@@ -39,11 +40,6 @@
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -52,6 +48,14 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.raindrop</groupId>
+                <artifactId>backstage-common-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- Slf4Jlog-->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -207,4 +211,31 @@
             </plugin>
         </plugins>
     </build>
+
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <!-- 环境标识，需要与配置文件的名称相对应 -->
+                <profiles.active>dev</profiles.active>
+            </properties>
+            <activation>
+                <!-- 默认环境 -->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profiles.active>prod</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 </project>

@@ -3,7 +3,7 @@ package org.raindrop.common.entity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import org.raindrop.common.con.CommonConstants;
+import org.raindrop.common.constants.CommonConstants;
 
 import java.io.Serializable;
 

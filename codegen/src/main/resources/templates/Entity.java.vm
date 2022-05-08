@@ -3,13 +3,12 @@ package ${base.pkg}.${base.module}.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.time.*;
-import java.math.*;
 
 
 /**
@@ -31,7 +30,8 @@ public class ${base.className} extends Model<${base.className}> {
     #if($column.priKey)
 @TableId
     #end
-private $column.attrType $column.lowerAttrName;
+@ApiModelProperty("$column.comments")
+    private $column.attrType $column.lowerAttrName;
 #end
 
     public ${base.className} () {

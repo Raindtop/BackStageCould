@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
+    <groupId>org.raindrop</groupId>
+    <artifactId>backstage-common-bom</artifactId>
+    <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <description>common 模块的统一版本管理</description>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.raindrop</groupId>
+                <artifactId>backstage-common-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.raindrop</groupId>
+                <artifactId>backstage-common-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.raindrop</groupId>
+                <artifactId>backstage-common-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
