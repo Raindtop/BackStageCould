@@ -30,13 +30,13 @@ public class CreateRouteInRedis {
     public void create(){
         RouteDefinition definition = new RouteDefinition();
         definition.setId(IdUtil.simpleUUID());
-        URI uri = UriComponentsBuilder.fromHttpUrl("http://127.0.0.1:8090/").build().toUri();
+        URI uri = UriComponentsBuilder.fromUriString("lb://backstage-upms-biz").build().toUri();
         definition.setUri(uri);
         PredicateDefinition predicate = new PredicateDefinition();
         predicate.setName("Path");
 
         Map<String, String> predicateParams = new HashMap<>(8);
-        predicateParams.put("pattern", "/filter/**");
+        predicateParams.put("pattern", "/upms/**");
         predicate.setArgs(predicateParams);
 
         definition.setPredicates(Arrays.asList(predicate));

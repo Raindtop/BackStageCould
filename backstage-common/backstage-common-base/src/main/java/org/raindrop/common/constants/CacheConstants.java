@@ -7,6 +7,15 @@ package org.raindrop.common.constants;
  * @Date 2022/5/7
  **/
 public interface CacheConstants {
+    /**
+     * 缓存前缀
+     */
+    String CACHE_PREFIX = "raindrop:";
+
+    /**
+     * 缓存前缀
+     */
+    String SYS_CACHE_PREFIX = CACHE_PREFIX + "system:";
 
     /**
      * 全局缓存，在缓存名称上加上该前缀表示该缓存不区分租户，比如:

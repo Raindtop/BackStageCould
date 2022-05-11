@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -23,8 +24,8 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class RedisConfig {
 
     @Bean
-    @ConditionalOnMissingBean(name = "redisTmeplate")
-    public RedisTemplate redisTemplate(){
+    @ConditionalOnMissingBean(name = "redisTemplate")
+    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory){
         log.info("Init RedisTemplate.");
         ObjectMapper om = new ObjectMapper();
         // 禁用时间转化为时间戳
@@ -43,6 +44,7 @@ public class RedisConfig {
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashValueSerializer(serializer);
         redisTemplate.setValueSerializer(serializer);
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
 
         return redisTemplate;
     }
