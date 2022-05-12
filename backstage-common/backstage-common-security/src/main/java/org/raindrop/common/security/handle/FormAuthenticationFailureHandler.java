@@ -13,11 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author daoism
- * @date 2019-08-20
- * <p>
  * 表单登录失败处理逻辑
- */
+ * @Author raindrop
+ * @Date 2022/5/12
+ **/
 @Slf4j
 public class FormAuthenticationFailureHandler implements AuthenticationFailureHandler {
 

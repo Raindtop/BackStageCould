@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.*;
+import java.time.LocalDateTime;
 
 
 /**
@@ -28,7 +28,7 @@ public class SysRole extends Model<SysRole> {
     */
     @TableId
     @ApiModelProperty("")
-    private Integer  roleId;
+    private Integer roleId;
     /**
     *  创建时间
     */

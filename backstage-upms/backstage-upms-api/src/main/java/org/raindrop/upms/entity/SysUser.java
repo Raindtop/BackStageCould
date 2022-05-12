@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.*;
+import java.time.LocalDateTime;
 
 
 /**
@@ -28,7 +28,7 @@ public class SysUser extends Model<SysUser> {
     */
     @TableId
     @ApiModelProperty("用户ID")
-    private Long userId;
+    private Integer userId;
     /**
     *  创建时间
     */

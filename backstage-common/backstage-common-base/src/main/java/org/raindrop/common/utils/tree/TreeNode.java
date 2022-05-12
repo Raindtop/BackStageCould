@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author daoism
- * @date 2017年11月9日23:33:45
- */
+ * @Author raindrop
+ * @Date 2022/5/12
+ **/
 @Data
 @ApiModel(value = "树形节点")
 public class TreeNode {

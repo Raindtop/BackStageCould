@@ -3,6 +3,7 @@ package org.raindrop.codegen.utils;
 import cn.hutool.core.io.FileUtil;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
+import org.raindrop.codegen.con.Template;
 import org.raindrop.codegen.dto.BaseColumnDto;
 import org.raindrop.codegen.dto.BaseInfoDto;
 import org.raindrop.codegen.dto.CreateTableDto;
@@ -21,8 +22,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
-
-import org.raindrop.codegen.con.Template;
 
 @Component
 public class GenUtils {

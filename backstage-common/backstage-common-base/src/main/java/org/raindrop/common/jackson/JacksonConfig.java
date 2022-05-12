@@ -22,47 +22,46 @@ import java.util.TimeZone;
 /**
  * JacksonConfig 配置时间转换规则
  *
- * @author L.cm
- * @author daoism
- * @author lishangbu
- * @date 2020-06-15
- */
+ * @Author raindrop
+ * @Date 2022/5/12
+ **/
 @Configuration
 @ConditionalOnClass(ObjectMapper.class)
 @AutoConfigureBefore(JacksonAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class JacksonConfig implements WebMvcConfigurer {
 
-	private static final String ASIA_SHANGHAI = "Asia/Shanghai";
+    private static final String ASIA_SHANGHAI = "Asia/Shanghai";
 
-	@Bean
-	@ConditionalOnMissingBean
-	public Jackson2ObjectMapperBuilderCustomizer customizer() {
-		return builder -> {
-			builder.locale(Locale.CHINA);
-			builder.timeZone(TimeZone.getTimeZone(ASIA_SHANGHAI));
-			builder.simpleDateFormat(DatePattern.NORM_DATETIME_PATTERN);
-			builder.serializerByType(Long.class, ToStringSerializer.instance);
-			builder.modules(new RJavaTimeModule());
-		};
-	}
+    @Bean
+    @ConditionalOnMissingBean
+    public Jackson2ObjectMapperBuilderCustomizer customizer() {
+        return builder -> {
+            builder.locale(Locale.CHINA);
+            builder.timeZone(TimeZone.getTimeZone(ASIA_SHANGHAI));
+            builder.simpleDateFormat(DatePattern.NORM_DATETIME_PATTERN);
+            builder.serializerByType(Long.class, ToStringSerializer.instance);
+            builder.modules(new RJavaTimeModule());
+        };
+    }
 
-	/**
-	 * 增加GET请求参数中时间类型转换
-	 * <ul>
-	 * <li>HH:mm:ss -> LocalTime</li>
-	 * <li>yyyy-MM-dd -> LocalDate</li>
-	 * <li>yyyy-MM-dd HH:mm:ss -> LocalDateTime</li>
-	 * </ul>
-	 * @param registry
-	 */
-	@Override
-	public void addFormatters(FormatterRegistry registry) {
-		DateTimeFormatterRegistrar registrar = new DateTimeFormatterRegistrar();
-		registrar.setTimeFormatter(DateTimeFormatter.ofPattern(DatePattern.NORM_TIME_PATTERN));
-		registrar.setDateFormatter(DateTimeFormatter.ofPattern(DatePattern.NORM_DATE_PATTERN));
-		registrar.setDateTimeFormatter(DateTimeFormatter.ofPattern(DatePattern.NORM_DATETIME_PATTERN));
-		registrar.registerFormatters(registry);
-	}
+    /**
+     * 增加GET请求参数中时间类型转换
+     * <ul>
+     * <li>HH:mm:ss -> LocalTime</li>
+     * <li>yyyy-MM-dd -> LocalDate</li>
+     * <li>yyyy-MM-dd HH:mm:ss -> LocalDateTime</li>
+     * </ul>
+     *
+     * @param registry
+     */
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        DateTimeFormatterRegistrar registrar = new DateTimeFormatterRegistrar();
+        registrar.setTimeFormatter(DateTimeFormatter.ofPattern(DatePattern.NORM_TIME_PATTERN));
+        registrar.setDateFormatter(DateTimeFormatter.ofPattern(DatePattern.NORM_DATE_PATTERN));
+        registrar.setDateTimeFormatter(DateTimeFormatter.ofPattern(DatePattern.NORM_DATETIME_PATTERN));
+        registrar.registerFormatters(registry);
+    }
 
 }

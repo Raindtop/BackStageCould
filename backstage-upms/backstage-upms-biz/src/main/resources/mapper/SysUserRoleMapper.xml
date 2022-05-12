@@ -10,4 +10,10 @@
         <result property="roleId" column="role_id"/>
         <result property="userId" column="user_id"/>
     </resultMap>
+    <select id="getRoleByUserId" resultType="org.raindrop.upms.entity.SysRole">
+        select b.*
+        from sys_user_role a
+                 LEFT JOIN sys_role b on a.role_id = b.role_id
+        where a.user_id = #{userId}
+    </select>
 </mapper>

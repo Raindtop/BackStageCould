@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.*;
+import java.time.LocalDateTime;
 
 
 /**
@@ -28,7 +28,7 @@ public class SysResource extends Model<SysResource> {
     */
     @TableId
     @ApiModelProperty("")
-    private Long resourceId;
+    private Integer resourceId;
     /**
     *  创建时间
     */
@@ -68,7 +68,7 @@ public class SysResource extends Model<SysResource> {
     *  父菜单ID
     */
     @ApiModelProperty("父菜单ID")
-    private Long parentId;
+    private Integer parentId;
     /**
     *  图标
     */

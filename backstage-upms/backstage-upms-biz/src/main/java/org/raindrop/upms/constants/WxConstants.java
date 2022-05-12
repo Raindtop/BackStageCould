@@ -3,7 +3,6 @@ package org.raindrop.upms.constants;
 
 import cn.hutool.http.Method;
 import org.raindrop.common.constants.CacheConstants;
-import org.springframework.http.HttpMethod;
 
 /**
  * 微信请求常量
@@ -22,6 +21,7 @@ public class WxConstants {
      * 缓存Key
      */
     public static final String WX_CACHE_TOKEN_KEY = WX_CAHCHE_PREFIX_KEY + "token";
+    public static final String WX_CACHE_SESSION_KEY = WX_CAHCHE_PREFIX_KEY + "sessionkey:";
 
     /**
      * 请求返回体
