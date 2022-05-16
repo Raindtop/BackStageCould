@@ -42,7 +42,6 @@ public class SecurityUserDetailsServiceImpl implements SecurityUserDetailsServic
 	@Override
 	@SneakyThrows
 	public UserDetails loadUserByUsername(String username) {
-
 		UserInfo result = remoteUserService.getSysUserByName(username, SecurityConstants.FROM_IN);
 		UserDetails userDetails = getUserDetails(result);
 		return userDetails;
@@ -83,7 +82,7 @@ public class SecurityUserDetailsServiceImpl implements SecurityUserDetailsServic
 		SysUser user = info.getSysUser();
 		boolean enabled = user.getLocked().equals(CommonConstants.STATUS_NORMAL);
 		// 构造security用户
-		return new SecurityUser(user.getWxUnionid(), user.getMiniOpenid(), user.getUserId(), user.getPhone(), user.getAvatar(),
+		return new SecurityUser(user.getWxUnionid(), user.getNickname(), user.getMiniOpenid(), user.getUserId(), user.getPhone(), user.getAvatar(),
 				user.getUsername(), SecurityConstants.BCRYPT + user.getPassword(), enabled, true, true,
 				!CommonConstants.STATUS_LOCK.equals(user.getLocked()), authorities);
 	}

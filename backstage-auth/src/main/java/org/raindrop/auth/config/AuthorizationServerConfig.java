@@ -30,7 +30,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-	private final ClientDetailsService SecurityClientDetailsServiceImpl;
+	private final ClientDetailsService securityClientDetailsServiceImpl;
 
 	private final AuthenticationManager authenticationManagerBean;
 
@@ -40,14 +40,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	private final TokenStore redisTokenStore;
 
-	private final TokenEnhancer tokenEnhancer;
+//	private final TokenEnhancer tokenEnhancer;
 
 	private final ObjectMapper objectMapper;
 
 	@Override
 	@SneakyThrows
 	public void configure(ClientDetailsServiceConfigurer clients) {
-		clients.withClientDetails(SecurityClientDetailsServiceImpl);
+		clients.withClientDetails(securityClientDetailsServiceImpl);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
 		endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST).tokenStore(redisTokenStore)
-				.tokenEnhancer(tokenEnhancer).userDetailsService(securityUserDetailsService)
+				.userDetailsService(securityUserDetailsService)
 				.authorizationCodeServices(authorizationCodeServices).authenticationManager(authenticationManagerBean)
 				.reuseRefreshTokens(false).pathMapping("/oauth/confirm_access", "/token/confirm_access")
 				.exceptionTranslator(new SecurityWebResponseExceptionTranslator());

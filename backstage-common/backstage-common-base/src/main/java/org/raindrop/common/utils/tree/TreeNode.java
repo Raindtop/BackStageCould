@@ -16,10 +16,10 @@ import java.util.List;
 public class TreeNode {
 
 	@ApiModelProperty(value = "当前节点id")
-	protected Long id;
+	protected Integer id;
 
 	@ApiModelProperty(value = "父节点id")
-	protected Long parentId;
+	protected Integer parentId;
 
 	@ApiModelProperty(value = "子节点列表")
 	protected List<TreeNode> children = new ArrayList<TreeNode>();

@@ -1,0 +1,7 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.raindrop.common.security.component.SecurityInnerAspect,\
+  org.raindrop.common.security.service.SecurityUserDetailsServiceImpl,\
+  org.raindrop.common.security.serialize.SecurityTokenStoreAutoConfiguration,\
+  org.raindrop.common.security.listener.AuthenticationFailureEventListener,\
+  org.raindrop.common.security.listener.AuthenticationSuccessEventListener
+

@@ -50,10 +50,15 @@ public class SysUser extends Model<SysUser> {
     @ApiModelProperty("是否禁用用户信息 0-否 1-是")
     private Integer locked;
     /**
-    *  用户名称
-    */
-    @ApiModelProperty("用户名称")
+     *  登陆名称
+     */
+    @ApiModelProperty("登陆名称")
     private String username;
+    /**
+     *  用户名称
+     */
+    @ApiModelProperty("用户名称")
+    private String nickname;
     /**
     *  头像地址
     */

@@ -7,6 +7,8 @@ import org.raindrop.common.security.handle.SsoLogoutSuccessHandler;
 import org.raindrop.common.security.mobile.MobileSecurityConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -17,6 +19,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
+@Primary
+@Order(90)
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 

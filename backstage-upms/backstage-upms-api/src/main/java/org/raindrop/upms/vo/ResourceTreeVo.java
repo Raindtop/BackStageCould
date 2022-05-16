@@ -68,14 +68,14 @@ public class ResourceTreeVo extends TreeNode implements Serializable {
 	public ResourceTreeVo() {
 	}
 
-	public ResourceTreeVo(long id, String name, long parentId) {
+	public ResourceTreeVo(Integer id, String name, Integer parentId) {
 		this.id = id;
 		this.parentId = parentId;
 		this.name = name;
 		this.label = name;
 	}
 
-	public ResourceTreeVo(long id, String name, ResourceTreeVo parent) {
+	public ResourceTreeVo(Integer id, String name, ResourceTreeVo parent) {
 		this.id = id;
 		this.parentId = parent.getId();
 		this.name = name;

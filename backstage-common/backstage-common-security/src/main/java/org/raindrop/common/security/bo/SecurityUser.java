@@ -29,6 +29,9 @@ public class SecurityUser extends User {
     @Getter
     private String phone;
 
+    @Getter
+    private String nickname;
+
     /**
      * 头像
      */
@@ -49,7 +52,7 @@ public class SecurityUser extends User {
 
 
     @JsonCreator
-    public SecurityUser(@JsonProperty("unionId") String unionId, @JsonProperty("miniOpenId") String miniOpenId, @JsonProperty("id") Integer id,
+    public SecurityUser(@JsonProperty("unionId") String unionId, @JsonProperty("nickname") String nickname, @JsonProperty("miniOpenId") String miniOpenId, @JsonProperty("id") Integer id,
                       @JsonProperty("phone") String phone, @JsonProperty("avatar") String avatar, @JsonProperty("username") String username,
                       @JsonProperty("password") String password, @JsonProperty("enabled") boolean enabled,
                       @JsonProperty("accountNonExpired") boolean accountNonExpired,
@@ -58,6 +61,7 @@ public class SecurityUser extends User {
                       @JsonProperty("authorities") Collection<? extends GrantedAuthority> authorities) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         this.miniOpenId = miniOpenId;
+        this.nickname = nickname;
         this.id = id;
         this.phone = phone;
         this.avatar = avatar;

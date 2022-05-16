@@ -10,7 +10,7 @@ public class ResourceVo {
      *
      */
     @ApiModelProperty("")
-    private Long resourceId;
+    private Integer resourceId;
     /**
      *  删除标志位 0-未删除 1-已删除
      */
@@ -38,7 +38,7 @@ public class ResourceVo {
      * 父菜单ID
      */
     @ApiModelProperty("父菜单ID")
-    private long parentId;
+    private Integer parentId;
     /**
      * 图标
      */

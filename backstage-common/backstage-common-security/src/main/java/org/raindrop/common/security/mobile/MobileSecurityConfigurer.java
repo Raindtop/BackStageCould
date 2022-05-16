@@ -35,7 +35,7 @@ public class MobileSecurityConfigurer extends SecurityConfigurerAdapter<DefaultS
     @Autowired
     private AuthenticationSuccessHandler mobileLoginSuccessHandler;
 
-    @Resource
+    @Autowired
     private SecurityUserDetailsService userDetailsService;
 
     @Override
