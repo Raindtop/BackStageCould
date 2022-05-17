@@ -35,12 +35,14 @@ public class SecurityInnerAspect {
             Class<?> aClass = point.getTarget().getClass();
             inner = AnnotationUtils.findAnnotation(aClass, Inner.class);
         }
+        log.info("1111");
 
         String header = request.getHeader(SecurityConstants.FROM);
         if (inner.value() && !StrUtil.equals(SecurityConstants.FROM_IN, header)) {
             log.warn("访问接口 {} 没有权限", inner.value());
             throw new AccessDeniedException("access denied");
         }
+        log.info("2222");
         return point.proceed();
     }
 

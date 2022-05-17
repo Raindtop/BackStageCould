@@ -1,4 +1,19 @@
-
+/*
+ *    Copyright (c) 2018-2025, daoism All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * Neither the name of the pig4cloud.com developer nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ * Author: daoism
+ */
 
 package org.raindrop.common.security.component;
 
@@ -10,24 +25,20 @@ import org.springframework.security.config.annotation.web.configurers.Expression
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.authentication.TokenExtractor;
-import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
-import org.springframework.security.oauth2.provider.token.UserAuthenticationConverter;
+import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.web.client.RestTemplate;
 
 /**
- * 1. 支持remoteTokenServices 负载均衡 2. 支持 获取用户全部信息
- * @Author raindrop
- * @Date 2022/5/12
- **/
+ * @author daoism
+ * @date 2020/9/30
+ * <p>
+ * 支持本地模式 [不仅过认证中 CheckToken]的的资源服务器配置
+ */
 @Slf4j
-public class SecurityResourceServerConfigurerAdapter extends ResourceServerConfigurerAdapter {
-	@Autowired
-	protected AuthenticationEntryPoint resourceAuthExceptionEntryPoint;
+public class SecurityLocalResourceServerConfigurerAdapter extends ResourceServerConfigurerAdapter {
 
 	@Autowired
-	protected RemoteTokenServices remoteTokenServices;
+	protected AuthenticationEntryPoint resourceAuthExceptionEntryPoint;
 
 	@Autowired
 	private PermitAllUrlResolver permitAllUrlResolver;
@@ -36,7 +47,7 @@ public class SecurityResourceServerConfigurerAdapter extends ResourceServerConfi
 	private TokenExtractor tokenExtractor;
 
 	@Autowired
-	private RestTemplate lbRestTemplate;
+	private ResourceServerTokenServices resourceServerTokenServices;
 
 	/**
 	 * 默认的配置，对外暴露
@@ -56,13 +67,8 @@ public class SecurityResourceServerConfigurerAdapter extends ResourceServerConfi
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) {
-		DefaultAccessTokenConverter accessTokenConverter = new DefaultAccessTokenConverter();
-		UserAuthenticationConverter userTokenConverter = new SecurityUserAuthenticationConverter();
-		accessTokenConverter.setUserTokenConverter(userTokenConverter);
-
-		remoteTokenServices.setRestTemplate(lbRestTemplate);
-		remoteTokenServices.setAccessTokenConverter(accessTokenConverter);
 		resources.authenticationEntryPoint(resourceAuthExceptionEntryPoint).tokenExtractor(tokenExtractor)
-				.tokenServices(remoteTokenServices);
+				.tokenServices(resourceServerTokenServices);
 	}
+
 }

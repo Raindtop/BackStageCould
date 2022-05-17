@@ -57,6 +57,7 @@ public class PermitAllUrlResolver implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() {
+		log.info("Loading Permit Url.");
 		RequestMappingHandlerMapping mapping = applicationContext.getBean(RequestMappingHandlerMapping.class);
 		Map<RequestMappingInfo, HandlerMethod> map = mapping.getHandlerMethods();
 

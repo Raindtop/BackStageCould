@@ -1,5 +1,6 @@
 package org.raindrop.upms.api;
 
+import org.raindrop.common.constants.SecurityConstants;
 import org.raindrop.upms.dto.UserInfo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public interface RemoteUserService {
      * @return
      */
     @GetMapping("/remote/user/name/{name}")
-    UserInfo getSysUserByName(@PathVariable("name") String name, @RequestHeader("from") String from);
+    UserInfo getSysUserByName(@PathVariable("name") String name, @RequestHeader(SecurityConstants.FROM) String from);
 
     /**
      * 通过社交账号登陆
@@ -27,7 +28,7 @@ public interface RemoteUserService {
      * @return
      */
     @GetMapping("/remote/user/social/{inStr}")
-    UserInfo getSysUserBySocial(@PathVariable("inStr") String inStr, @RequestHeader("from") String from);
+    UserInfo getSysUserBySocial(@PathVariable("inStr") String inStr, @RequestHeader(SecurityConstants.FROM) String from);
 
 
 }

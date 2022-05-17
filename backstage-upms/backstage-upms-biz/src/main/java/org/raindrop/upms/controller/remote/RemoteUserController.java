@@ -2,6 +2,7 @@ package org.raindrop.upms.controller.remote;
 
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
+import org.raindrop.common.security.annotation.Inner;
 import org.raindrop.upms.dto.UserInfo;
 import org.raindrop.upms.service.SysUserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author raindrop
  * @date ${base.datetime}
  */
+@Inner
 @RestController
 @AllArgsConstructor
 @RequestMapping("/remote/user")
@@ -44,6 +46,4 @@ public class RemoteUserController {
     public UserInfo getUserBySocial(@PathVariable("inStr") String inStr) {
         return sysUserService.getUserInfoBySocial(inStr);
     }
-
-
 }
