@@ -17,10 +17,14 @@
 
 package org.raindrop.auth.handle;
 
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.json.JSONObject;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.raindrop.common.security.handle.AuthenticationFailureHandler;
+import org.raindrop.common.utils.WebUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -53,6 +57,13 @@ public class SecurityAuthenticationFailureEventHandler implements Authentication
 			HttpServletRequest request, HttpServletResponse response) {
 		String username = authentication.getName();
 		log.info("用户：{} 登录失败，异常：{}", username, authenticationException.getLocalizedMessage());
+
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.set("code", "401");
+		jsonObject.set("data", authenticationException.getMessage());
+		response.setStatus(HttpStatus.UNAUTHORIZED.value());
+		WebUtils.renderJson(response, jsonObject);
 	}
 
 }

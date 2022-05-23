@@ -1,4 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.raindrop.common.security.component.SecurityTokenEnhancer,\
   org.raindrop.common.security.component.SecurityInnerAspect,\
   org.raindrop.common.security.service.SecurityUserDetailsServiceImpl,\
   org.raindrop.common.security.serialize.SecurityTokenStoreAutoConfiguration,\

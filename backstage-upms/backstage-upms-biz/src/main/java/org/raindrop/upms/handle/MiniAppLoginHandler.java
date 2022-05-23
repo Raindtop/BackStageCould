@@ -32,17 +32,17 @@ public class MiniAppLoginHandler implements LoginHandler {
 
     @Override
     public String identify(String code) {
-        WxLoginResponseDto wxLogin = wxUtils.getOpenIdByWxCode(code);
-        if (wxLogin == null) {
-            return null;
-        }
+//        WxLoginResponseDto wxLogin = wxUtils.getOpenIdByWxCode(code);
+//        if (wxLogin == null) {
+//            return null;
+//        }
 
-        String sessionKey = wxLogin.getSessionKey();
-        String openid = wxLogin.getOpenid();
-        String cacheKey = WxConstants.WX_CACHE_SESSION_KEY + openid;
-        //缓存sessionKey
-        redisTemplate.opsForValue().set(cacheKey, sessionKey, Duration.ofDays(6));
-        return openid;
+//        String sessionKey = wxLogin.getSessionKey();
+//        String openid = wxLogin.getOpenid();
+//        String cacheKey = WxConstants.WX_CACHE_SESSION_KEY + openid;
+//        //缓存sessionKey
+//        redisTemplate.opsForValue().set(cacheKey, sessionKey, Duration.ofDays(6));
+        return "18806728289";
     }
 
     private String getSessionKey() {

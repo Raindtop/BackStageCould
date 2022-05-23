@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @SneakyThrows
     protected void configure(HttpSecurity http) {
-        http.formLogin().loginProcessingUrl("/token/form")
+        http.formLogin()
                 .failureHandler(authenticationFailureHandler()).and().logout()
                 .logoutSuccessHandler(logoutSuccessHandler()).deleteCookies("JSESSIONID").invalidateHttpSession(true)
                 .and().authorizeRequests().antMatchers("/token/**", "/actuator/**", "/mobile/**").permitAll()

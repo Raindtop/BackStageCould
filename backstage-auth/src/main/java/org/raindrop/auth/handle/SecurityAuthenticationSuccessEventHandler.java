@@ -17,9 +17,12 @@
 
 package org.raindrop.auth.handle;
 
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.json.JSONObject;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.raindrop.common.security.handle.AuthenticationSuccessHandler;
+import org.raindrop.common.utils.WebUtils;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -49,6 +52,11 @@ public class SecurityAuthenticationSuccessEventHandler implements Authentication
 	public void handle(Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
 		String username = authentication.getName();
 		log.info("用户：{} 登录成功", username);
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.set("code", "2000");
+		jsonObject.set("data", IdUtil.randomUUID());
+		WebUtils.renderJson(response, jsonObject);
 	}
 
 }

@@ -71,11 +71,11 @@ public class MobileAuthenticationFilter extends AbstractAuthenticationProcessing
         try {
             authResult = this.getAuthenticationManager().authenticate(mobileAuthenticationToken);
 
-            logger.debug("Authentication success: " + authResult);
+            logger.info("Authentication success: " + authResult);
             SecurityContextHolder.getContext().setAuthentication(authResult);
         } catch (Exception failed) {
             SecurityContextHolder.clearContext();
-            logger.debug("Authentication request failed: " + failed);
+            logger.info("Authentication request failed: " + failed);
 
             eventPublisher.publishAuthenticationFailure(new BadCredentialsException(failed.getMessage(), failed),
                     new PreAuthenticatedAuthenticationToken("access-token", "N/A"));

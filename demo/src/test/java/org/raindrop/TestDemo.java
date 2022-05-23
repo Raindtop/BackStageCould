@@ -1,18 +1,22 @@
 package org.raindrop;
 
 
+import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.hailiang.daoism.search.api.feign.SearchService;
 import com.hailiang.daoism.search.query.EsScoreQueryBuilder;
 import com.hailiang.daoism.search.query.EsWrappers;
+import lombok.SneakyThrows;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.raindrop.common.utils.DateUtil;
 import org.raindrop.dto.Bank;
 import org.raindrop.upms.api.RemoteUserService;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -41,6 +45,9 @@ public class TestDemo {
     @Resource
     private SearchService searchService;
 
+    @Test
+    public void GracefulStop(){
+    }
 
     @Test
     public void test(){

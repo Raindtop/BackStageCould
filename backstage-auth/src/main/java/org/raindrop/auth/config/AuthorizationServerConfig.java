@@ -40,7 +40,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	private final TokenStore redisTokenStore;
 
-//	private final TokenEnhancer tokenEnhancer;
+	private final TokenEnhancer tokenEnhancer;
 
 	private final ObjectMapper objectMapper;
 
@@ -60,7 +60,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
 		endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST).tokenStore(redisTokenStore)
-				.userDetailsService(securityUserDetailsService)
+				.tokenEnhancer(tokenEnhancer).userDetailsService(securityUserDetailsService)
 				.authorizationCodeServices(authorizationCodeServices).authenticationManager(authenticationManagerBean)
 				.reuseRefreshTokens(false).pathMapping("/oauth/confirm_access", "/token/confirm_access")
 				.exceptionTranslator(new SecurityWebResponseExceptionTranslator());

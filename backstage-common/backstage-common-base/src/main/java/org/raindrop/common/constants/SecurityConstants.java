@@ -134,7 +134,7 @@ public interface SecurityConstants {
 	/**
 	 * 按条件client_id 查询
 	 */
-	String DEFAULT_SELECT_STATEMENT = BASE_FIND_STATEMENT + " where client_id = ? and del_flag = 0 and tenant_id = %s";
+	String DEFAULT_SELECT_STATEMENT = BASE_FIND_STATEMENT + " where client_id = ? and del_flag = 0";
 
 	/**
 	 * 资源服务器默认bean名称

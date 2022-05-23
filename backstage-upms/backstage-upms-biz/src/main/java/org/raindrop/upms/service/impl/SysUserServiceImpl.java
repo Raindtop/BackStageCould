@@ -1,5 +1,6 @@
 package org.raindrop.upms.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ArrayUtil;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -16,6 +17,7 @@ import org.raindrop.upms.service.SysUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -83,7 +85,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public UserInfo getRoleResourceByUserId(Integer userId) {
         // 获取权限信息
         List<SysRole> sysRoles = sysUserRoleMapper.getRoleByUserId(userId);
-        List<SysResource> sysResources = sysRoleResourceMapper.getResourceByRoleIds(sysRoles.stream().map(SysRole::getRoleId).collect(Collectors.toList()));
+        List<Integer> roleIds = sysRoles.stream().map(SysRole::getRoleId).collect(Collectors.toList());
+        List<SysResource> sysResources = new ArrayList<>();
+        if (CollUtil.isNotEmpty(roleIds)){
+            sysResources = sysRoleResourceMapper.getResourceByRoleIds(sysRoles.stream().map(SysRole::getRoleId).collect(Collectors.toList()));
+        }
 
         UserInfo userInfo = new UserInfo();
         userInfo.setRoles(ArrayUtil.toArray(sysRoles.stream().map(SysRole::getRoleId).collect(Collectors.toList()), Integer.class));
