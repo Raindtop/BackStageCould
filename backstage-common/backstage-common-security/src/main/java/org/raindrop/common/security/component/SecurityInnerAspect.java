@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.raindrop.common.constants.SecurityConstants;
 import org.raindrop.common.security.annotation.Inner;
+import org.raindrop.common.security.utils.SecurityMessageSourceUtil;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.security.access.AccessDeniedException;
 
@@ -40,7 +41,8 @@ public class SecurityInnerAspect {
         String header = request.getHeader(SecurityConstants.FROM);
         if (inner.value() && !StrUtil.equals(SecurityConstants.FROM_IN, header)) {
             log.warn("访问接口 {} 没有权限", inner.value());
-            throw new AccessDeniedException("access denied");
+            throw new AccessDeniedException(SecurityMessageSourceUtil.getAccessor().getMessage(
+                    "AbstractAccessDecisionManager.accessDenied", new Object[] { inner.value() }, "access denied"));
         }
         log.info("2222");
         return point.proceed();

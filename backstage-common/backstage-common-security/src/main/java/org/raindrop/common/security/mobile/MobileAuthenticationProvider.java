@@ -6,6 +6,8 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.raindrop.common.security.component.SecurityPreAuthenticationChecks;
 import org.raindrop.common.security.service.SecurityUserDetailsService;
+import org.raindrop.common.security.utils.SecurityMessageSourceUtil;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -20,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetailsChecker;
 @Slf4j
 public class MobileAuthenticationProvider implements AuthenticationProvider {
 
+	private MessageSourceAccessor messages = SecurityMessageSourceUtil.getAccessor();
 
 	private UserDetailsChecker detailsChecker = new SecurityPreAuthenticationChecks();
 
@@ -30,6 +33,7 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
 	@Override
 	@SneakyThrows
 	public Authentication authenticate(Authentication authentication) {
+
 		MobileAuthenticationToken mobileAuthenticationToken = (MobileAuthenticationToken) authentication;
 
 		String principal = mobileAuthenticationToken.getPrincipal().toString();
@@ -37,7 +41,8 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
 		if (userDetails == null) {
 			log.debug("Authentication failed: no credentials provided");
 
-			throw new BadCredentialsException("用户不存在");
+			throw new BadCredentialsException(messages
+					.getMessage("AbstractUserDetailsAuthenticationProvider.noopBindAccount", "Noop Bind Account"));
 		}
 
 		// 检查账号状态

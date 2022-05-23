@@ -4,6 +4,7 @@ package org.raindrop.common.security.component;
 
 import lombok.extern.slf4j.Slf4j;
 import org.raindrop.common.security.exception.*;
+import org.raindrop.common.security.utils.SecurityMessageSourceUtil;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.web.util.ThrowableAnalyzer;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+
+import java.util.Locale;
 
 /**
  * OAutH Server 异常处理,重写oauth 默认实现
@@ -51,7 +54,9 @@ public class SecurityWebResponseExceptionTranslator implements WebResponseExcept
         ase = (InvalidGrantException) throwableAnalyzer.getFirstThrowableOfType(InvalidGrantException.class,
                 causeChain);
         if (ase != null) {
-            return handleOAuth2Exception(new InvalidException(ase.getMessage(), ase));
+            String msg = SecurityMessageSourceUtil.getAccessor().getMessage(
+                    "AbstractUserDetailsAuthenticationProvider.badCredentials", ase.getMessage(), Locale.CHINA);
+            return handleOAuth2Exception(new InvalidException(msg, ase));
         }
 
         ase = (HttpRequestMethodNotSupportedException) throwableAnalyzer

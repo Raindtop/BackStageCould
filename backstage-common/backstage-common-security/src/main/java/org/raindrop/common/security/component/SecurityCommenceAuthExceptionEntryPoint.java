@@ -9,6 +9,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.raindrop.common.constants.CommonConstants;
 import org.raindrop.common.entity.R;
+import org.raindrop.common.security.utils.SecurityMessageSourceUtil;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;
@@ -49,15 +50,21 @@ public class SecurityCommenceAuthExceptionEntryPoint implements AuthenticationEn
         // 异常通用化的处理
         if (authException instanceof CredentialsExpiredException
                 || authException instanceof InsufficientAuthenticationException) {
-            result.setMsg(authException.getMessage());
+            String msg = SecurityMessageSourceUtil.getAccessor().getMessage(
+                    "AbstractUserDetailsAuthenticationProvider.credentialsExpired", authException.getMessage());
+            result.setMsg(msg);
         }
 
         if (authException instanceof UsernameNotFoundException) {
-            result.setMsg(authException.getMessage());
+            String msg = SecurityMessageSourceUtil.getAccessor().getMessage(
+                    "AbstractUserDetailsAuthenticationProvider.noopBindAccount", authException.getMessage());
+            result.setMsg(msg);
         }
 
         if (authException instanceof BadCredentialsException) {
-            result.setMsg(authException.getMessage());
+            String msg = SecurityMessageSourceUtil.getAccessor().getMessage(
+                    "AbstractUserDetailsAuthenticationProvider.badClientCredentials", authException.getMessage());
+            result.setMsg(msg);
         }
 
         response.setStatus(HttpStatus.HTTP_UNAUTHORIZED);
