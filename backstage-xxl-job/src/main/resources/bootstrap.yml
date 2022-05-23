@@ -1,0 +1,26 @@
+# 此配置只适合开发测试环境，详细配置参考： http://t.cn/A64RaHJm
+server:
+  port: 1300
+  servlet:
+    context-path: /xxl-job-admin
+
+spring:
+  application:
+    name: backstage-@artifactId@
+  profiles:
+    active: @profiles.active@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_HOST:raindrop.com}:${NACOS_PORT:8848}
+        namespace: ${DIS_NAMESPACE:}
+      config:
+        file-extension: yaml
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        prefix: ${spring.application.name}
+        namespace: ${CONFIG_NAMESPACE:}
+        group: ${GROUP:DEFAULT_GROUP}
+        shared-configs:
+          - data-id: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            refresh: true
+            group: ${GROUP:DEFAULT_GROUP}
