@@ -17,5 +17,7 @@
         <module>backstage-common-bom</module>
         <module>backstage-common-redis</module>
         <module>backstage-common-security</module>
+        <module>backstage-common-swagger</module>
+        <module>backstage-common-gateway</module>
     </modules>
 </project>

@@ -18,3 +18,5 @@ spring:
           - data-id: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
             refresh: true
             group: ${GROUP:DEFAULT_GROUP}
+  autoconfigure:
+    exclude: org.springframework.cloud.gateway.config.GatewayAutoConfiguration,org.springframework.cloud.gateway.config.GatewayClassPathWarningAutoConfiguration,org.springframework.cloud.gateway.config.GatewayRedisAutoConfiguration

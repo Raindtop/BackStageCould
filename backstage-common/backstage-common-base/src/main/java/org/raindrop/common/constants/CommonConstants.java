@@ -53,4 +53,9 @@ public interface CommonConstants {
      */
     String BUCKET_NAME = "raindrop";
 
+    /**
+     * 密码传输是否加密
+     */
+    String ENC_FLAG = "enc_flag";
+
 }

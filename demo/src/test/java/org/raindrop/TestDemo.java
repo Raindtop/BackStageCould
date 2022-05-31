@@ -3,9 +3,6 @@ package org.raindrop;
 
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.hailiang.daoism.search.api.feign.SearchService;
-import com.hailiang.daoism.search.query.EsScoreQueryBuilder;
-import com.hailiang.daoism.search.query.EsWrappers;
 import lombok.SneakyThrows;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,8 +39,8 @@ public class TestDemo {
 //            e.printStackTrace();
 //        }
 //    }
-    @Resource
-    private SearchService searchService;
+//    @Resource
+//    private SearchService searchService;
 
     @Test
     public void GracefulStop(){
@@ -57,11 +54,11 @@ public class TestDemo {
     @Test
     public void testQuery(){
         // eq查询 查询bank索引下 balance=18612的数据
-        {
-            System.out.println(searchService);
-            EsScoreQueryBuilder<Bank> queryBuilder = (EsScoreQueryBuilder<Bank>) EsWrappers.lambdaScoreQueryBuilder("bank", Bank.class);
-            System.out.println("ES eq:" + JSONObject.toJSONString(queryBuilder.eq(Bank::getBalance, 18612).query()));
-        }
+//        {
+//            System.out.println(searchService);
+//            EsScoreQueryBuilder<Bank> queryBuilder = (EsScoreQueryBuilder<Bank>) EsWrappers.lambdaScoreQueryBuilder("bank", Bank.class);
+//            System.out.println("ES eq:" + JSONObject.toJSONString(queryBuilder.eq(Bank::getBalance, 18612).query()));
+//        }
 //
 //        // ne查询  查询bank索引下 age!=39
 //        {

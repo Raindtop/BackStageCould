@@ -44,6 +44,14 @@
             <groupId>org.raindrop</groupId>
             <artifactId>backstage-common-security</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.raindrop</groupId>
+            <artifactId>backstage-common-swagger</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.raindrop</groupId>
+            <artifactId>backstage-common-gateway</artifactId>
+        </dependency>
     </dependencies>
 
 
