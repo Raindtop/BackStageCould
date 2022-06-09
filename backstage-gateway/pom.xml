@@ -11,7 +11,7 @@
     <groupId>org.raindorp</groupId>
     <artifactId>backstage-gateway</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>gateway</name>
+    <name>backstage-gateway</name>
 
     <dependencies>
         <!--gateway 网关依赖,内置webflux 依赖-->

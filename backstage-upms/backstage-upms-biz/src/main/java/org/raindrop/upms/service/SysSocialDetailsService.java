@@ -2,6 +2,7 @@ package org.raindrop.upms.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.raindrop.upms.constants.SocialDetailEnum;
+import org.raindrop.upms.dto.UserInfo;
 import org.raindrop.upms.entity.SysSocialDetails;
 
 /**
@@ -19,4 +20,12 @@ public interface SysSocialDetailsService extends IService<SysSocialDetails> {
      * @return
      */
     SysSocialDetails getConfig(SocialDetailEnum socialDetailEnum);
+
+    /**
+     * 根据入参查询用户信息
+     *
+     * @param inStr TYPE@code
+     * @return
+     */
+    UserInfo getUserInfoBySocial(String inStr);
 }

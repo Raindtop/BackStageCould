@@ -28,14 +28,6 @@ public interface SysUserService extends IService<SysUser> {
     UserInfo getSysUserByOpenId(String openId);
 
     /**
-     * 根据入参查询用户信息
-     *
-     * @param inStr TYPE@code
-     * @return
-     */
-    UserInfo getUserInfoBySocial(String inStr);
-
-    /**
      * 查询用户的角色以及权限信息
      *
      * @param userId

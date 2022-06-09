@@ -32,8 +32,6 @@ import java.util.stream.Collectors;
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
     @Resource
-    private Map<String, LoginHandler> loginHandlerMap;
-    @Resource
     private SysUserRoleMapper sysUserRoleMapper;
     @Resource
     private SysRoleResourceMapper sysRoleResourceMapper;
@@ -71,15 +69,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
         return userInfo;
     }
-
-    @Override
-    public UserInfo getUserInfoBySocial(String inStr) {
-        String[] inStrs = inStr.split(StringPool.AT);
-        String type = inStrs[0];
-        String loginStr = inStrs[1];
-        return loginHandlerMap.get(type).handle(loginStr);
-    }
-
 
     @Override
     public UserInfo getRoleResourceByUserId(Integer userId) {
