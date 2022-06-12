@@ -14,6 +14,7 @@ import org.raindrop.upms.utils.WxUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.time.Duration;
 
 /**
@@ -22,26 +23,28 @@ import java.time.Duration;
  **/
 @Slf4j
 @Component("MINI")
-@AllArgsConstructor
-public class MiniAppLoginHandler implements LoginHandler {
-    private final SysUserService sysUserService;
+public class MiniAppLoginHandler extends AbstractLoginHandler {
+    @Resource
+    private SysUserService sysUserService;
 
-    private final WxUtils wxUtils;
+    @Resource
+    private WxUtils wxUtils;
 
-    private final RedisTemplate redisTemplate;
+    @Resource
+    private RedisTemplate redisTemplate;
 
     @Override
     public String identify(String code) {
-//        WxLoginResponseDto wxLogin = wxUtils.getOpenIdByWxCode(code);
-//        if (wxLogin == null) {
-//            return null;
-//        }
+        WxLoginResponseDto wxLogin = wxUtils.getOpenIdByWxCode(code);
+        if (wxLogin == null) {
+            return null;
+        }
 
-//        String sessionKey = wxLogin.getSessionKey();
-//        String openid = wxLogin.getOpenid();
-//        String cacheKey = WxConstants.WX_CACHE_SESSION_KEY + openid;
-//        //缓存sessionKey
-//        redisTemplate.opsForValue().set(cacheKey, sessionKey, Duration.ofDays(6));
+        String sessionKey = wxLogin.getSessionKey();
+        String openid = wxLogin.getOpenid();
+        String cacheKey = WxConstants.WX_CACHE_SESSION_KEY + openid;
+        //缓存sessionKey
+        redisTemplate.opsForValue().set(cacheKey, sessionKey, Duration.ofDays(6));
         return "18806728289";
     }
 

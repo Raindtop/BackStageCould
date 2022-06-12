@@ -53,10 +53,6 @@ public class SecurityAuthenticationSuccessEventHandler implements Authentication
 		String username = authentication.getName();
 		log.info("用户：{} 登录成功", username);
 
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.set("code", "2000");
-		jsonObject.set("data", IdUtil.randomUUID());
-		WebUtils.renderJson(response, jsonObject);
 	}
 
 }

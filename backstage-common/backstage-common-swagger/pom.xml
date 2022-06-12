@@ -12,6 +12,8 @@
     <artifactId>backstage-common-swagger</artifactId>
     <packaging>jar</packaging>
 
+    <description>接口文档</description>
+
     <properties>
         <swagger.fox.version>3.0.0</swagger.fox.version>
         <knife4j.version>2.0.8</knife4j.version>
@@ -50,9 +52,10 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webflux</artifactId>
         </dependency>
+        <!--网关 swagger 聚合依赖-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-gateway-core</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>

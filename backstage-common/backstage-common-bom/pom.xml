@@ -10,6 +10,24 @@
     <modelVersion>4.0.0</modelVersion>
     <version>1.0.0-SNAPSHOT</version>
 
+    <properties>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
+        <dynamic-ds.version>3.2.0</dynamic-ds.version>
+        <druid.version>1.2.3</druid.version>
+        <mysql.connector.version>8.0.22</mysql.connector.version>
+        <swagger.core.version>1.5.22</swagger.core.version>
+        <mp.weixin.version>3.9.0</mp.weixin.version>
+        <ijpay.version>2.7.0</ijpay.version>
+        <groovy.version>3.0.3</groovy.version>
+        <jsoup.version>1.13.1</jsoup.version>
+        <security.oauth.version>2.3.6.RELEASE</security.oauth.version>
+        <fastjson.version>1.2.73</fastjson.version>
+        <aliyun.version>3.0.52.ALL</aliyun.version>
+        <javaformat.plugin.version>0.0.23</javaformat.plugin.version>
+        <docker.plugin.version>0.33.0</docker.plugin.version>
+        <cloud.plugin.version>1.1.1</cloud.plugin.version>
+    </properties>
+
     <description>common 模块的统一版本管理</description>
     <dependencyManagement>
         <dependencies>
@@ -37,6 +55,97 @@
                 <groupId>org.raindrop</groupId>
                 <artifactId>backstage-common-gateway</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <!--mybatis plus extension,包含了mybatis plus core-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!--mybatis-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+                <version>${dynamic-ds.version}</version>
+            </dependency>
+            <!-- druid 连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!--mysql 驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
+            <!--fastjson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!--swagger 最新依赖内置版本-->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>${swagger.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.core.version}</version>
+            </dependency>
+            <!--微信依赖-->
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-mp</artifactId>
+                <version>${mp.weixin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-common</artifactId>
+                <version>${mp.weixin.version}</version>
+            </dependency>
+            <!--支付相关SDK-->
+            <dependency>
+                <groupId>com.github.javen205</groupId>
+                <artifactId>IJPay-WxPay</artifactId>
+                <version>${ijpay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.javen205</groupId>
+                <artifactId>IJPay-AliPay</artifactId>
+                <version>${ijpay.version}</version>
+            </dependency>
+            <!--定义groovy 版本-->
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy</artifactId>
+                <version>${groovy.version}</version>
+            </dependency>
+            <!--稳定版本，替代spring security bom内置-->
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${security.oauth.version}</version>
+            </dependency>
+            <!--jsoup html 解析组件-->
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

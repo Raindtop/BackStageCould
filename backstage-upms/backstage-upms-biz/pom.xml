@@ -48,6 +48,7 @@
             <groupId>org.raindrop</groupId>
             <artifactId>backstage-common-swagger</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.raindrop</groupId>
             <artifactId>backstage-common-gateway</artifactId>
@@ -61,13 +62,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>io.fabric8</groupId>-->
-<!--                <artifactId>docker-maven-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <skip>false</skip>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <groupId>io.fabric8</groupId>-->
+            <!--                <artifactId>docker-maven-plugin</artifactId>-->
+            <!--                <configuration>-->
+            <!--                    <skip>false</skip>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
 </project>
